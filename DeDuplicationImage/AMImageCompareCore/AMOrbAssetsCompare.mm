@@ -15,12 +15,12 @@ using namespace std;
 
 @implementation AMOrbAssetsCompare
 
-- (double) handleImage:(UIImage*) image1 withImage:(UIImage*) image2{
+- (double)handleImage:(UIImage *)image1 withImage:(UIImage *)image2 {
 //    ORB::create(100);orb = cv2.ORB_create()
     
-    Mat img_1,img_2;
+    Mat img_1, img_2;
     Mat descriptors_1, descriptors_2;
-    std::vector<KeyPoint> keypoints_1,keypoints_2;
+    std::vector<KeyPoint> keypoints_1, keypoints_2;
     UIImageToMat(image1, img_1);
     UIImageToMat(image2, img_2);
 
@@ -35,12 +35,11 @@ using namespace std;
     }
     
     BFMatcher matcher(NORM_HAMMING);
-    std::vector<vector<DMatch> > matches;
+    std::vector<vector<DMatch>> matches;
     matcher.knnMatch(descriptors_1, descriptors_2, matches,2);
-    
 
     vector<double> good;
-    for(int i = 0; i < matches.size();i++){
+    for(int i = 0; i < matches.size(); i++) {
         vector<DMatch> matchesValue = matches[i];
         double m = matchesValue[0].distance;
         double n = matchesValue[1].distance * 0.75;
@@ -48,15 +47,13 @@ using namespace std;
             good.insert(good.end(), m);
         }
     }
+    
     if (matches.size() == 0) {
         return 0;
-    }
-    else {
-        double similary = good.size()*1.0/(matches.size()*1.0);
+    } else {
+        double similary = good.size() * 1.0 / (matches.size() * 1.0);
         return similary;
     }
-    
-    
 }
 
 //    match 匹配

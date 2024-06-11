@@ -9,15 +9,18 @@
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/imgcodecs/ios.h"
+
 using namespace std;
 using namespace cv;
+
 @implementation AMHistogramCompare
-- (double) handleImage:(UIImage*) image1 withImage:(UIImage*) image2 {
-    Mat base,compare;
-    UIImageToMat(image1,base);
+
+- (double)handleImage:(UIImage *)image1 withImage:(UIImage *)image2 {
+    Mat base, compare;
+    UIImageToMat(image1, base);
     UIImageToMat(image2, compare);
     
-    Mat hsvbase,hsvcompare;
+    Mat hsvbase, hsvcompare;
     cvtColor(base, hsvbase, COLOR_BGR2HSV);
     cvtColor(compare, hsvcompare, COLOR_BGR2HSV);
     
@@ -37,14 +40,14 @@ using namespace cv;
     MatND hist_base;
     MatND hist_compare;
     
-    calcHist(&hsvbase, 1, channels, Mat(), hist_base, 2, histSize, ranges,true, false);
+    calcHist(&hsvbase, 1, channels, Mat(), hist_base, 2, histSize, ranges, true, false);
     calcHist(&hsvcompare, 1, channels, Mat(), hist_compare, 2, histSize, ranges, true, false);
     
-    normalize(hist_base, hist_base,0, 1, NORM_MINMAX, -1, Mat());
+    normalize(hist_base, hist_base, 0, 1, NORM_MINMAX, -1, Mat());
     normalize(hist_compare, hist_compare, 0, 1, NORM_MINMAX, -1, Mat());
     
     
-    double basecompare =  compareHist(hist_base, hist_compare, HISTCMP_CORREL);
+    double basecompare = compareHist(hist_base, hist_compare, HISTCMP_CORREL);
     
     return basecompare;
 }

@@ -13,7 +13,6 @@
 #include "opencv2/features2d.hpp"
 #import "AMPhotoManager.h"
 
-
 #define MaxHamming 10
 #define MaxHis 0.6
 #define MaxOrb 0.15
@@ -31,37 +30,32 @@ using namespace std;
 }
 @end
 
-
 @implementation AMCompare
+
 //处理图片矩阵
-- (void) handleHighLevelImage:(PHAsset*) representObjct withImage:(PHAsset*) challengeObject
-{
+- (void)handleHighLevelImage:(PHAsset *)representObjct withImage:(PHAsset *)challengeObject {
+    UIImage *image1 = [AMPhotoManager syncRequestImage:representObjct targetSize:HighLevelSize];
+    UIImage *image2 = [AMPhotoManager syncRequestImage:challengeObject targetSize:HighLevelSize];
     
-    UIImage* image1 =  [AMPhotoManager syncRequestImage:representObjct targetSize:HighLevelSize];
-    UIImage* image2 = [AMPhotoManager syncRequestImage:challengeObject targetSize:HighLevelSize];
-    
-    UIImageToMat(image1,originMat);
+    UIImageToMat(image1, originMat);
     UIImageToMat(image2, compareMat);
 }
 
-- (void) handleLowLevelImage:(PHAsset*) representObjct withImage:(PHAsset*) challengeObject
-{
+- (void)handleLowLevelImage:(PHAsset *)representObjct withImage:(PHAsset *)challengeObject {
+    UIImage *image1 = [AMPhotoManager syncRequestImage:representObjct targetSize:LowLevelSize];
+    UIImage *image2 = [AMPhotoManager syncRequestImage:challengeObject targetSize:LowLevelSize];
     
-    UIImage* image1 =  [AMPhotoManager syncRequestImage:representObjct targetSize:LowLevelSize];
-    UIImage* image2 = [AMPhotoManager syncRequestImage:challengeObject targetSize:LowLevelSize];
-    
-    UIImageToMat(image1,originMat);
+    UIImageToMat(image1, originMat);
     UIImageToMat(image2, compareMat);
 }
 
 //直方图颜色分布区分
-- (BOOL) histogramCompare
-{
+- (BOOL)histogramCompare {
 //    :(Mat) base andMat:(Mat) compare
     Mat base = originMat;
     Mat compare = compareMat;
     
-    Mat hsvbase,hsvcompare;
+    Mat hsvbase, hsvcompare;
     cvtColor(base, hsvbase, COLOR_BGR2HSV);
     cvtColor(compare, hsvcompare, COLOR_BGR2HSV);
     
@@ -81,24 +75,23 @@ using namespace std;
     MatND hist_base;
     MatND hist_compare;
     
-    calcHist(&hsvbase, 1, channels, Mat(), hist_base, 2, histSize, ranges,true, false);
+    calcHist(&hsvbase, 1, channels, Mat(), hist_base, 2, histSize, ranges, true, false);
     calcHist(&hsvcompare, 1, channels, Mat(), hist_compare, 2, histSize, ranges, true, false);
     
-    normalize(hist_base, hist_base,0, 1, NORM_MINMAX, -1, Mat());
+    normalize(hist_base, hist_base, 0, 1, NORM_MINMAX, -1, Mat());
     normalize(hist_compare, hist_compare, 0, 1, NORM_MINMAX, -1, Mat());
     
-    return  compareHist(hist_base, hist_compare, HISTCMP_CORREL) >= MaxHis ? YES : NO;
-    
+    return compareHist(hist_base, hist_compare, HISTCMP_CORREL) >= MaxHis ? YES : NO;
 }
 
 //ORB特征提取
-- (BOOL) orbCompare {
+- (BOOL)orbCompare {
     
     Mat img_1 = originMat;
     Mat img_2 = compareMat;
     
     cv::Ptr<ORB> orb = ORB::create();
-    std::vector<KeyPoint> keypoints_1,keypoints_2;
+    std::vector<KeyPoint> keypoints_1, keypoints_2;
     Mat descriptors_1, descriptors_2;
 
 
@@ -111,13 +104,11 @@ using namespace std;
     }
     
     BFMatcher matcher(NORM_HAMMING);
-    std::vector<vector<DMatch> > matches;
+    std::vector<vector<DMatch>> matches;
     matcher.knnMatch(descriptors_1, descriptors_2, matches,2);
     
-
     vector<double> good;
-    for(int i = 0; i < matches.size();i++) {
-        
+    for (int i = 0; i < matches.size(); i++) {
         vector<DMatch> matchesValue = matches[i];
         double m = matchesValue[0].distance;
         double n = matchesValue[1].distance * 0.75;
@@ -126,21 +117,18 @@ using namespace std;
         }
     }
  
-    return matches.size() == 0 ? NO :good.size()*1.0/(matches.size()*1.0) >= MaxOrb ? YES : NO ;
+    return matches.size() == 0 ? NO : good.size() * 1.0 / (matches.size() * 1.0) >= MaxOrb ? YES : NO ;
 }
 
 //phash轮廓匹配
-- (BOOL) phashCompare
-{
+- (BOOL)phashCompare {
     std::vector<uchar> arry1 = [self phash:originMat];
     std::vector<uchar> arry2 = [self phash:compareMat];
     
     return [self hashDistance:arry1 withArry:arry2] < MaxHamming ? YES : NO;
 }
 
-
-- (int) hashDistance:(vector<uchar>) arry1 withArry:(vector<uchar>) arry2
-{
+- (int)hashDistance:(vector<uchar>)arry1 withArry:(vector<uchar>)arry2 {
     
     //迭代器元素为空,终止判断
     if (arry1.empty() || arry2.empty()) {
@@ -151,9 +139,9 @@ using namespace std;
     if (arry1.size() != arry2.size()) {
         return -1;
     }
+    
     int distance = 0;
-    for(int i = 0;i < arry1.size();i++){
-        
+    for (int i = 0; i < arry1.size(); i++){
         if (arry1[i] != arry2[i]) {
             distance++;
         }
@@ -161,9 +149,7 @@ using namespace std;
     return distance;
 }
 
-
-- (vector<uchar>) phash:(Mat) originMat
-{
+- (vector<uchar>)phash:(Mat)originMat {
     //RGB转灰度矩阵
     Mat src = [self rgbToGray:originMat];
     //矩阵离散余弦变化
@@ -177,56 +163,47 @@ using namespace std;
     double mean = sumMat(mat);
 //    NSLog(@"average %lf",mean);
     //判断数组里面每个元素和平均数的大小，大于平均数设置1，小于平均数设置0
-    averageArray(mat,mean);
+    averageArray(mat, mean);
     
     vector<uchar> array;
     for (int i = 0; i < mat.rows; ++i) {
-        array.insert(array.end(), mat.ptr<uchar>(i), mat.ptr<uchar>(i)+mat.cols);
-      }
+        array.insert(array.end(), mat.ptr<uchar>(i), mat.ptr<uchar>(i) + mat.cols);
+    }
     return array;
 }
 
-double sumMat(Mat& inputImg)
-{
+double sumMat(Mat& inputImg) {
     double sum = 0.0;
     double mean = 0.0;
     int rowNumber = inputImg.rows;
     int colNumber = inputImg.cols * inputImg.channels();
-    for (int i = 0; i < rowNumber;i++)
-    {
+    for (int i = 0; i < rowNumber; i++) {
         uchar* data = inputImg.ptr<uchar>(i);
-        for (int j = 0; j < colNumber; j++)
-        {
+        for (int j = 0; j < colNumber; j++) {
             sum = data[j] + sum;
         }
     }
-    mean = sum / (rowNumber * inputImg.cols*1.0);
-   return  mean;
+    mean = sum / (rowNumber * inputImg.cols * 1.0);
+    return  mean;
 }
 
-void averageArray(Mat&  mat,double mean)
-{
+void averageArray(Mat&  mat,double mean) {
     int rowNumber = mat.rows;
     int colNumber = mat.cols * mat.channels();
     vector<uchar> array;
-    for (int i = 0; i < rowNumber;i++) {
+    for (int i = 0; i < rowNumber; i++) {
         uchar* data = mat.ptr<uchar>(i);
-        for (int j = 0; j < colNumber; j++)
-        {
-            if(data[j] > mean) {
+        for (int j = 0; j < colNumber; j++) {
+            if (data[j] > mean) {
                 data[j] = 1;
-            }
-            else {
+            } else {
                 data[j] = 0;
             }
         }
     }
-   
 }
 
-- (Mat) rgbToGray:(Mat) rgbMat
-{
-        
+- (Mat)rgbToGray:(Mat)rgbMat {
     //第二步:将C++的彩色图片转成灰度图片
     //参数1:数据源(原图片)
     //参数2:目标数据(目标图片)
@@ -238,19 +215,18 @@ void averageArray(Mat&  mat,double mean)
     return mat_image_dst;
 }
 
-- (Mat) dctMat:(Mat) src
-{
+- (Mat)dctMat:(Mat)src {
     //变为32X32的图片
-    resize(src, src,cv::Size(32,32));
+    resize(src, src, cv::Size(32, 32));
     //缩放到1.0/255为了转化为单通道深度为一的矩阵(位图)
-    src.convertTo(src, CV_32F,1.0/255);
+    src.convertTo(src, CV_32F, 1.0 / 255);
 
     //输出矩阵
     Mat outDst;
     //DCT离散余弦变换
     dct(src, outDst);
     //转化为8位正整数矩阵单通道输出
-    outDst.convertTo(outDst,CV_8SC1);
+    outDst.convertTo(outDst, CV_8SC1);
     return outDst;
 }
 

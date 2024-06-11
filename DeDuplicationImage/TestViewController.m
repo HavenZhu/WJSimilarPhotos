@@ -7,7 +7,6 @@
 
 #import "TestViewController.h"
 #import "AMHistogramCompare.h"
-#import "AMPhashAssetsCompare.h"
 #import <Masonry/Masonry.h>
 #import "AMPhotoManager.h"
 #import "UIViewController+AMNavigationItem.h"
@@ -164,11 +163,6 @@
     [AMPhotoManager requestImage:self.asset2 targetSize:CGSizeMake(224, 224) synchronous:YES block:^(UIImage * _Nonnull image) {
         challengeImage = image;
     }];
-    
-    
-    AMPhashAssetsCompare* compare = [[AMPhashAssetsCompare alloc] init];
-    int distance = [compare handleImage:resImage withImage:challengeImage];
-    [self setTitleView:[NSString stringWithFormat:@"%d",distance] Color:[UIColor blackColor]];
 
 }
 

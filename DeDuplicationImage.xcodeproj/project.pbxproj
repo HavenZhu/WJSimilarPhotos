@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0429D4E125F79406006037AE /* AMPhashAssetsCompare.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0429D4E025F79406006037AE /* AMPhashAssetsCompare.mm */; };
 		043C460D25FA328B00F545CD /* AMRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C460C25FA328B00F545CD /* AMRootNavigationController.m */; };
 		043C461625FA33F900F545CD /* UIViewController+AMNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C461425FA33F900F545CD /* UIViewController+AMNavigationItem.m */; };
 		043C461C25FA340E00F545CD /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 043C461B25FA340E00F545CD /* NSString+Extension.m */; };
@@ -31,7 +30,7 @@
 		04EA804625EF5BDD0070322F /* DeDuplicationImageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EA804525EF5BDD0070322F /* DeDuplicationImageTests.m */; };
 		04EA805125EF5BDD0070322F /* DeDuplicationImageUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EA805025EF5BDD0070322F /* DeDuplicationImageUITests.m */; };
 		04F15E4525F622DE0050131A /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F15E4425F622DE0050131A /* NSDate+Helper.m */; };
-		DD403A104F0029FDF3D8FAA7 /* Pods_DeDuplicationImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBBD9C5717BC6302049F7992 /* Pods_DeDuplicationImage.framework */; };
+		4BF60B3AD2A32E3ADD847B50 /* libPods-DeDuplicationImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBD0531061A5946FE1FD618 /* libPods-DeDuplicationImage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0429D4DF25F79406006037AE /* AMPhashAssetsCompare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMPhashAssetsCompare.h; sourceTree = "<group>"; };
-		0429D4E025F79406006037AE /* AMPhashAssetsCompare.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AMPhashAssetsCompare.mm; sourceTree = "<group>"; };
 		043C460B25FA328B00F545CD /* AMRootNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMRootNavigationController.h; sourceTree = "<group>"; };
 		043C460C25FA328B00F545CD /* AMRootNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMRootNavigationController.m; sourceTree = "<group>"; };
 		043C461425FA33F900F545CD /* UIViewController+AMNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AMNavigationItem.m"; sourceTree = "<group>"; };
@@ -101,9 +98,9 @@
 		04EA805225EF5BDD0070322F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F15E4325F622DE0050131A /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		04F15E4425F622DE0050131A /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
+		0DBD0531061A5946FE1FD618 /* libPods-DeDuplicationImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeDuplicationImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4AC5B9245EC094499CB515 /* Pods-DeDuplicationImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeDuplicationImage.release.xcconfig"; path = "Target Support Files/Pods-DeDuplicationImage/Pods-DeDuplicationImage.release.xcconfig"; sourceTree = "<group>"; };
 		9EBB613C0004A16045A69670 /* Pods-DeDuplicationImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeDuplicationImage.debug.xcconfig"; path = "Target Support Files/Pods-DeDuplicationImage/Pods-DeDuplicationImage.debug.xcconfig"; sourceTree = "<group>"; };
-		DBBD9C5717BC6302049F7992 /* Pods_DeDuplicationImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeDuplicationImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD403A104F0029FDF3D8FAA7 /* Pods_DeDuplicationImage.framework in Frameworks */,
+				4BF60B3AD2A32E3ADD847B50 /* libPods-DeDuplicationImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,8 +150,6 @@
 		048BEEE825F9B0F800E60CB8 /* AMImageCompareCore */ = {
 			isa = PBXGroup;
 			children = (
-				0429D4DF25F79406006037AE /* AMPhashAssetsCompare.h */,
-				0429D4E025F79406006037AE /* AMPhashAssetsCompare.mm */,
 				0493CA7E25FB027500513332 /* AMHistogramCompare.h */,
 				0493CA7F25FB027500513332 /* AMHistogramCompare.mm */,
 				04E44FC0261C797300FAE98B /* AMOrbAssetsCompare.h */,
@@ -273,7 +268,7 @@
 		FE4E9C17D867B8F8652C48F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DBBD9C5717BC6302049F7992 /* Pods_DeDuplicationImage.framework */,
+				0DBD0531061A5946FE1FD618 /* libPods-DeDuplicationImage.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -289,7 +284,6 @@
 				04EA802225EF5BD70070322F /* Sources */,
 				04EA802325EF5BD70070322F /* Frameworks */,
 				04EA802425EF5BD70070322F /* Resources */,
-				4854238504BB4EFA18A74A2B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -405,23 +399,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4854238504BB4EFA18A74A2B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DeDuplicationImage/Pods-DeDuplicationImage-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DeDuplicationImage/Pods-DeDuplicationImage-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DeDuplicationImage/Pods-DeDuplicationImage-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		91A05A86E2846FBE344EFD98 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,7 +444,6 @@
 				04EA802E25EF5BD70070322F /* SceneDelegate.m in Sources */,
 				048F769F262EF73B00DB1401 /* AMCompare.mm in Sources */,
 				04E4877525F8BE5E002E5C71 /* AMAssetCollectionViewCell.m in Sources */,
-				0429D4E125F79406006037AE /* AMPhashAssetsCompare.mm in Sources */,
 				0493CA8025FB027500513332 /* AMHistogramCompare.mm in Sources */,
 				043C460D25FA328B00F545CD /* AMRootNavigationController.m in Sources */,
 			);
@@ -643,12 +619,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 292V2CN6SF;
+				DEVELOPMENT_TEAM = P558RBRSUG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = DeDuplicationImage/PrefixHeader.pch;
 				INFOPLIST_FILE = DeDuplicationImage/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -666,12 +642,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 292V2CN6SF;
+				DEVELOPMENT_TEAM = P558RBRSUG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = DeDuplicationImage/PrefixHeader.pch;
 				INFOPLIST_FILE = DeDuplicationImage/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
