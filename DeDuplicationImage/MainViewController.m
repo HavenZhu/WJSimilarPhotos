@@ -11,14 +11,17 @@
 #import "UIViewController+AMNavigationItem.h"
 #import "TestViewController.h"
 #import "AMImageShowController.h"
+#import "AMTestImageViewController.h"
 
 #import <Masonry/Masonry.h>
 #define collectionMaxCount 4
-#define kScreen_Width  [[UIScreen mainScreen] bounds].size.width
-#define kScreen_Height [[UIScreen mainScreen] bounds].size.height
+
 @interface MainViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property(strong,nonatomic) UICollectionView* collectionView;
-@property(strong,nonatomic) NSArray* dataArray;
+@property(strong,nonatomic) NSArray<NSArray<PHAsset *> *> *dataArray;
+
+@property (nonatomic, strong) NSArray<NSString *> *screenshotArray;
+
 @end
 
 @implementation MainViewController
@@ -28,28 +31,32 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupCollectionView];
-    [self setNavRightBarItem:@selector(finsh) title:@"开始" color:[UIColor blackColor]];
+    [self setNavRightBarItem:@selector(start) title:@"开始" color:[UIColor blackColor]];
+    [self setNavLeftBarItem:@selector(test) title:@"测试" color:[UIColor blackColor]];
     [self setTitleView:@"图片相似度" Color:[UIColor blackColor]];
-        // Do any additional setup after loading the view.
+    
+    self.screenshotArray = [AMPhotoManager fetchScreenshotArray];
 }
 
-- (void) finsh {
+- (void)start {
     NSLog(@"start");
     [self setTitleView:@"正在计算....." Color:[UIColor blackColor]];
     [self loadImageData];
-   
 }
 
 - (void) test {
-    TestViewController* testVc = [[TestViewController alloc] init];
-    [self.navigationController pushViewController:testVc animated:YES];
+//    TestViewController* testVc = [[TestViewController alloc] init];
+//    [self.navigationController pushViewController:testVc animated:YES];
+    
+    AMTestImageViewController *vc = [AMTestImageViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) loadImageData {
     
     //异步加载图片数据
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.dataArray = [AMPhotoManager fectchSimilarArray];
+        self.dataArray = [AMPhotoManager fetchSimilarArray];
         
         //计算相似总数
         int count = 0;

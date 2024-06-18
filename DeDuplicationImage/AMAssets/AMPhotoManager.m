@@ -60,13 +60,13 @@
 }
 
 #pragma 获取asset资源文件
-+ (NSArray *)getAlbumPhotos {
++ (NSArray<NSString *> *)getAlbumPhotos {
     NSMutableArray *photos = [NSMutableArray array];
 
     PHFetchResult *recentAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
     [recentAlbums enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //资源集合类型检测
-        if (![obj isKindOfClass:PHAssetCollection.class])return;
+        if (![obj isKindOfClass:PHAssetCollection.class]) return;
         PHAssetCollection *collection = (PHAssetCollection *)obj;
         
         PHFetchOptions *option = [[PHFetchOptions alloc] init];
@@ -76,7 +76,7 @@
         
         [assetsReuslt enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             //资源图片检测
-            if (![obj isKindOfClass:[PHAsset class]])return;
+            if (![obj isKindOfClass:[PHAsset class]]) return;
 
             PHAsset *asset = (PHAsset *)obj;
             [photos addObject:asset.localIdentifier];
@@ -87,7 +87,7 @@
     return photos;
 }
 
-+ (NSArray *)fectchSimilarArray {
++ (NSArray<NSArray<PHAsset *> *> *)fetchSimilarArray {
     
     NSMutableArray *outputArray = [NSMutableArray array];
     //设置筛选条件
@@ -125,6 +125,37 @@
             }
         }
     }
+    return outputArray;
+}
+
++ (NSArray<NSString *> *)fetchScreenshotArray {
+    NSMutableArray *outputArray = [NSMutableArray array];
+    
+    PHFetchResult *recentAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+    [recentAlbums enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //资源集合类型检测
+        if (![obj isKindOfClass:PHAssetCollection.class]) return;
+        PHAssetCollection *collection = (PHAssetCollection *)obj;
+        
+        PHFetchOptions *option = [[PHFetchOptions alloc] init];
+        option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+        
+        PHFetchResult *assetsReuslt = [PHAsset fetchAssetsInAssetCollection:collection options:option];
+        
+        [assetsReuslt enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            //资源图片检测
+            if (![obj isKindOfClass:[PHAsset class]]) return;
+            
+            PHAsset *asset = (PHAsset *)obj;
+            // 匹配屏幕截图大小
+            if ((asset.pixelWidth == kScreen_Width * [UIScreen mainScreen].scale && asset.pixelHeight == kScreen_Height * [UIScreen mainScreen].scale)
+                || (asset.pixelWidth == kScreen_Height && asset.pixelHeight == kScreen_Width)) {
+                [outputArray addObject:asset.localIdentifier];
+            }
+        }];
+
+    }];
+    
     return outputArray;
 }
 

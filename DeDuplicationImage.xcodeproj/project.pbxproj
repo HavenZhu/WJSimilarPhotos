@@ -31,6 +31,7 @@
 		04EA805125EF5BDD0070322F /* DeDuplicationImageUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EA805025EF5BDD0070322F /* DeDuplicationImageUITests.m */; };
 		04F15E4525F622DE0050131A /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F15E4425F622DE0050131A /* NSDate+Helper.m */; };
 		4BF60B3AD2A32E3ADD847B50 /* libPods-DeDuplicationImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBD0531061A5946FE1FD618 /* libPods-DeDuplicationImage.a */; };
+		D00CC01C2C216C3500FC5B28 /* AMTestImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D00CC01B2C216C3500FC5B28 /* AMTestImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,8 @@
 		0DBD0531061A5946FE1FD618 /* libPods-DeDuplicationImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeDuplicationImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4AC5B9245EC094499CB515 /* Pods-DeDuplicationImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeDuplicationImage.release.xcconfig"; path = "Target Support Files/Pods-DeDuplicationImage/Pods-DeDuplicationImage.release.xcconfig"; sourceTree = "<group>"; };
 		9EBB613C0004A16045A69670 /* Pods-DeDuplicationImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeDuplicationImage.debug.xcconfig"; path = "Target Support Files/Pods-DeDuplicationImage/Pods-DeDuplicationImage.debug.xcconfig"; sourceTree = "<group>"; };
+		D00CC01A2C216C3500FC5B28 /* AMTestImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTestImageViewController.h; sourceTree = "<group>"; };
+		D00CC01B2C216C3500FC5B28 /* AMTestImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTestImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,8 @@
 				04E4876625F8AF77002E5C71 /* MainViewController.m */,
 				0493CAAA25FB4B0900513332 /* TestViewController.h */,
 				0493CAAB25FB4B0900513332 /* TestViewController.m */,
+				D00CC01A2C216C3500FC5B28 /* AMTestImageViewController.h */,
+				D00CC01B2C216C3500FC5B28 /* AMTestImageViewController.m */,
 				04D3E08926203DE8002A41A0 /* PrefixHeader.pch */,
 			);
 			path = DeDuplicationImage;
@@ -431,6 +436,7 @@
 				04DE49D425F1DC0D000ED380 /* AMPhotoManager.m in Sources */,
 				04EA803125EF5BD70070322F /* ViewController.m in Sources */,
 				043C462225FA341300F545CD /* UIView+Extension.m in Sources */,
+				D00CC01C2C216C3500FC5B28 /* AMTestImageViewController.m in Sources */,
 				04E4876725F8AF77002E5C71 /* MainViewController.m in Sources */,
 				04EA802B25EF5BD70070322F /* AppDelegate.m in Sources */,
 				04EA803C25EF5BDC0070322F /* main.m in Sources */,
