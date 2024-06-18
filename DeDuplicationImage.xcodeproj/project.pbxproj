@@ -32,6 +32,7 @@
 		04F15E4525F622DE0050131A /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F15E4425F622DE0050131A /* NSDate+Helper.m */; };
 		4BF60B3AD2A32E3ADD847B50 /* libPods-DeDuplicationImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DBD0531061A5946FE1FD618 /* libPods-DeDuplicationImage.a */; };
 		D00CC01C2C216C3500FC5B28 /* AMTestImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D00CC01B2C216C3500FC5B28 /* AMTestImageViewController.m */; };
+		D00CC0252C21B47F00FC5B28 /* AMDeviceInfoDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = D00CC0242C21B47F00FC5B28 /* AMDeviceInfoDetector.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		9EBB613C0004A16045A69670 /* Pods-DeDuplicationImage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeDuplicationImage.debug.xcconfig"; path = "Target Support Files/Pods-DeDuplicationImage/Pods-DeDuplicationImage.debug.xcconfig"; sourceTree = "<group>"; };
 		D00CC01A2C216C3500FC5B28 /* AMTestImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTestImageViewController.h; sourceTree = "<group>"; };
 		D00CC01B2C216C3500FC5B28 /* AMTestImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTestImageViewController.m; sourceTree = "<group>"; };
+		D00CC0232C21B47F00FC5B28 /* AMDeviceInfoDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceInfoDetector.h; sourceTree = "<group>"; };
+		D00CC0242C21B47F00FC5B28 /* AMDeviceInfoDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceInfoDetector.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +242,8 @@
 				D00CC01A2C216C3500FC5B28 /* AMTestImageViewController.h */,
 				D00CC01B2C216C3500FC5B28 /* AMTestImageViewController.m */,
 				04D3E08926203DE8002A41A0 /* PrefixHeader.pch */,
+				D00CC0232C21B47F00FC5B28 /* AMDeviceInfoDetector.h */,
+				D00CC0242C21B47F00FC5B28 /* AMDeviceInfoDetector.m */,
 			);
 			path = DeDuplicationImage;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				048F769F262EF73B00DB1401 /* AMCompare.mm in Sources */,
 				04E4877525F8BE5E002E5C71 /* AMAssetCollectionViewCell.m in Sources */,
 				0493CA8025FB027500513332 /* AMHistogramCompare.mm in Sources */,
+				D00CC0252C21B47F00FC5B28 /* AMDeviceInfoDetector.m in Sources */,
 				043C460D25FA328B00F545CD /* AMRootNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

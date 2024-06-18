@@ -12,6 +12,7 @@
 #import "TestViewController.h"
 #import "AMImageShowController.h"
 #import "AMTestImageViewController.h"
+#import "AMDeviceInfoDetector.h"
 
 #import <Masonry/Masonry.h>
 #define collectionMaxCount 4
@@ -36,6 +37,12 @@
     [self setTitleView:@"图片相似度" Color:[UIColor blackColor]];
     
     self.screenshotArray = [AMPhotoManager fetchScreenshotArray];
+    
+    NSLog(@"memory used: %.2f", [AMDeviceInfoDetector currentMemoryUsed]);
+    NSLog(@"memory total: %.2f", [AMDeviceInfoDetector deviceTotalMemory]);
+    NSLog(@"memory available: %.2f", [AMDeviceInfoDetector currentAvailableMemory]);
+    NSLog(@"disk total: %.2f", [AMDeviceInfoDetector deviceTotalDisk]);
+    NSLog(@"disk available: %.2f", [AMDeviceInfoDetector currentAvailableDisk]);
 }
 
 - (void)start {
